@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import WelcomePage from './components/Pages/welcome.vue'
+import WelcomePage from './views/Pages/welcome.vue'
 
 Vue.use(Router)
 
 const SignUp = resolve => {
-  require.ensure(['./components/Auth/SignUp.vue'], () => {
-    resolve(require('./components/Auth/SignUp.vue'))
+  require.ensure(['./views/Auth/SignUp.vue'], () => {
+    resolve(require('./views/Auth/SignUp.vue'))
   })
 }
 
