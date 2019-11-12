@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <h1>Book7</h1>
-    </div>
+    <transition name="slide" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
