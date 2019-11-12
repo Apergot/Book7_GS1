@@ -63,6 +63,20 @@ export default {
       hobbyInputs: [],
       terms: false
     }
+  },
+  methods: {
+    onSubmit () {
+      const formData = {
+        email: this.email,
+        age: this.age,
+        password: this.password,
+        confirmPassword: this.confirmPassword,
+        country: this.country,
+        hobbies: this.hobbyInputs.map(hobby => hobby.value),
+        terms: this.terms
+      }
+      console.log(formData)
+    }
   }
 }
 </script>
