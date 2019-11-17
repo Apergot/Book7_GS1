@@ -1,52 +1,73 @@
 <template>
     <div id="signup">
     <div class="signup-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="email">Mail</label>
-          <input
+      <b-form @submit.prevent="onSubmit">
+        <b-form-group
+          label="Your email address"
+          description="We'll never share your email with anyone else"
+        >
+          <b-form-input
                   type="email"
                   id="email"
-                  v-model="email">
-        </div>
-        <div class="input">
-          <label for="age">Your Age</label>
-          <input
-                  type="number"
-                  id="age"
-                  v-model.number="age">
-        </div>
-        <div class="input">
-          <label for="password">Password</label>
-          <input
+                  required
+                  v-model="email"
+                  placeholder="Enter mail"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label="Password"
+          description="You'll need it later to log in"
+        >
+          <b-form-input
                   type="password"
                   id="password"
-                  v-model="password">
-        </div>
-        <div class="input">
-          <label for="confirm-password">Confirm Password</label>
-          <input
+                  v-model="password"
+                  placeholder="Enter password"
+                  required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          label="Confirm password"
+          description="We need to be sure you got it right!"
+        >
+          <b-form-input
                   type="password"
                   id="confirm-password"
-                  v-model="confirmPassword">
-        </div>
-        <div class="input">
-          <label for="country">Country</label>
-          <select id="country" v-model="country">
+                  v-model="confirmPassword"
+                  placeholder="Enter your password again"
+                  required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form inline>
+          <label class="sr-only" for="country">Country</label>
+          <b-form-select id="country" v-model="country">
             <option value="SPN">Spain</option>
             <option value="UK">United Kingdom</option>
             <option value="USA">United States</option>
             <option value="GER">Germany</option>
-          </select>
-        </div>
-        <div>
-          <input type="checkbox" id="terms" v-model="terms">
-          <label for="terms">Accept Terms of Use</label>
-        </div>
+            <template v-slot:first>
+            <option :value="null">Choose...</option>
+            </template>
+          </b-form-select>
+          <label class="sr-only" for="age">Your Age</label>
+          <b-input
+                  type="number"
+                  id="age"
+                  v-model.number="age"
+          ></b-input>
+        </b-form>
+
+        <b-form-checkbox
+          id="terms"
+          v-model="terms"
+        >Accept Terms of Use</b-form-checkbox>
         <div class="submit">
           <button type="submit">Submit</button>
         </div>
-      </form>
+      </b-form>
     </div>
   </div>
 </template>
@@ -81,3 +102,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
