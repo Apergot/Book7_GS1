@@ -2,7 +2,7 @@
   <b-container id="signin">
     <div class="signin-form">
       <b-form @submit.prevent="onSubmit">
-        <img src="../../assets/logo.png" alt="logo" class="logo">
+        <h4 class="logo">Sign In</h4>
         <b-form-group class="input">
           <label for="email">Mail</label>
           <b-form-input
@@ -53,9 +53,30 @@ export default {
 <style scoped>
   @media(min-width: 768px) {
     .logo{
-      width: 35%;
-      height: 5%;
+      margin: 5%;
+      text-align: center;
+    }
+    .submit{
+      width: 33%;
       margin-left: 33%;
+    }
+
+    .signin-form{
+      margin-top: 2%;
+      width: 50%;
+      margin-left: 25%;
+      box-sizing: border-box;
+      box-shadow: 5px 10px 18px #888888;
+      border-radius: 5px;
+      border: 1px solid #c0c2c4;
+      padding: 10px;
+    }
+  }
+
+   @media(min-width: 992px) {
+    .logo{
+      margin: 5%;
+      text-align: center;
     }
     .submit{
       width: 33%;
@@ -73,12 +94,10 @@ export default {
       padding: 10px;
     }
   }
-
   @media(max-width: 768px) {
     .logo{
-      width: 35%;
-      height: 5%;
-      margin-left: 33%
+      margin: 5%;
+      text-align: center;
     }
     .submit{
       width: 80%;

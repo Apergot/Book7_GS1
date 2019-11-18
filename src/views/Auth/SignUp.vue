@@ -2,7 +2,7 @@
     <b-container id="signup" class="signup">
     <div class="signup-form">
       <b-form @submit.prevent="onSubmit">
-        <img src="../../assets/logo.png" alt="logo" class="logo">
+        <h4 class="logo">Sign Up</h4>
         <b-form-group
           label="Your email address"
           description="We'll never share your email with anyone else"
@@ -109,9 +109,7 @@ export default {
 <style scoped>
   @media(min-width: 768px) {
     .logo{
-      width: 35%;
-      height: 5%;
-      margin-left: 33%;
+      text-align: center;
     }
     .signup-form{
       margin-top: 2%;
@@ -139,12 +137,32 @@ export default {
     }
   }
 
+  @media(min-width: 992px) {
+    .logo{
+      text-align: center;
+    }
+    .submit{
+      width: 33%;
+      margin-left: 33%;
+    }
+
+    .signup-form{
+      margin-top: 2%;
+      width: 40%;
+      margin-left: 30%;
+      box-sizing: border-box;
+      box-shadow: 5px 10px 18px #888888;
+      border-radius: 5px;
+      border: 1px solid #c0c2c4;
+      padding: 10px;
+    }
+  }
+
   @media(max-width: 768px) {
 
     .logo{
-      width: 35%;
-      height: 5%;
-      margin-left: 33%
+      margin: 5%;
+      text-align: center;
     }
     .input-inline{
       margin-top: 5%;
