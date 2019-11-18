@@ -37,6 +37,21 @@ export default new Vuex.Store({
         })
         .catch(error => console.log(error))
     },
+    login ({ commit }, authData) {
+      axios.post(`/accounts:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true
+      })
+        .then(res => {
+          console.log(res)
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          })
+        })
+        .catch(error => console.log(error))
+    },
     storeUser ({ commit, state }, userData) {
       if (!state.idToken) {
         return
