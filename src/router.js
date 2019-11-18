@@ -11,10 +11,17 @@ const SignUp = resolve => {
   })
 }
 
+const SignIn = resolve => {
+  require.ensure(['./views/Auth/SignIn.vue'], () => {
+    resolve(require('./views/Auth/SignIn.vue'))
+  })
+}
+
 export default new Router({
   mode: 'history',
   routes: [
     { path: '/', name: 'home', component: WelcomePage },
-    { path: '/signup', name: 'sign up', component: SignUp }
+    { path: '/signup', name: 'sign up', component: SignUp },
+    { path: '/signin', name: 'sign in', component: SignIn }
   ]
 })
