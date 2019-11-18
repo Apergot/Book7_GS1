@@ -46,7 +46,11 @@
         </b-form-group>
 
         <b-form inline>
-          <b-form-select class="input-inline" id="country" v-model="country" :options="countries">
+          <b-form-select
+                  class="input-inline"
+                  id="country"
+                  v-model="country"
+                  :options="countries">
           </b-form-select>
           <b-input
                   placeholder="Your age"
