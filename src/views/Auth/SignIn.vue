@@ -1,27 +1,32 @@
 <template>
-  <div id="signin">
+  <b-container id="signin">
     <div class="signin-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
+      <b-form @submit.prevent="onSubmit">
+        <img src="../../assets/logo.png" alt="logo" class="logo">
+        <b-form-group class="input">
           <label for="email">Mail</label>
-          <input
+          <b-form-input
                   type="email"
                   id="email"
-                  v-model="email">
-        </div>
-        <div class="input">
+                  v-model="email"
+                  required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group class="input">
           <label for="password">Password</label>
-          <input
+          <b-form-input
                   type="password"
                   id="password"
-                  v-model="password">
+                  v-model="password"
+                  required
+          ></b-form-input>
+        </b-form-group>
+        <div>
+          <b-button class="submit" type="submit">Submit</b-button>
         </div>
-        <div class="submit">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      </b-form>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -46,5 +51,38 @@ export default {
 </script>
 
 <style scoped>
+  @media(min-width: 768px) {
+    .logo{
+      width: 35%;
+      height: 5%;
+      margin-left: 33%;
+    }
+    .submit{
+      width: 33%;
+      margin-left: 33%;
+    }
 
+    .signin-form{
+      margin-top: 2%;
+      width: 40%;
+      margin-left: 30%;
+      box-sizing: border-box;
+      box-shadow: 5px 10px 18px #888888;
+      border-radius: 5px;
+      border: 1px solid #c0c2c4;
+      padding: 10px;
+    }
+  }
+
+  @media(max-width: 768px) {
+    .logo{
+      width: 35%;
+      height: 5%;
+      margin-left: 33%
+    }
+    .submit{
+      width: 80%;
+      margin: 0 10%;
+    }
+  }
 </style>

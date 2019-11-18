@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-  @media(min-width: 600px) {
+  @media(min-width: 768px) {
     .logo{
       width: 35%;
       height: 5%;
@@ -139,7 +139,7 @@ export default {
     }
   }
 
-  @media(max-width: 600px) {
+  @media(max-width: 768px) {
 
     .logo{
       width: 35%;
