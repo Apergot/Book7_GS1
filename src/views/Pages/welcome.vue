@@ -28,7 +28,7 @@ export default {
     }
   },
   created () {
-    this.getInitialPresentation()
+    console.log(this.$route)
   }
 }
 </script>

@@ -5,15 +5,9 @@ import WelcomePage from './views/Pages/welcome.vue'
 
 Vue.use(Router)
 
-const SignUp = resolve => {
+const signUp = resolve => {
   require.ensure(['./views/Auth/SignUp.vue'], () => {
     resolve(require('./views/Auth/SignUp.vue'))
-  })
-}
-
-const SignIn = resolve => {
-  require.ensure(['./views/Auth/SignIn.vue'], () => {
-    resolve(require('./views/Auth/SignIn.vue'))
   })
 }
 
@@ -45,8 +39,7 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '/', name: 'home', component: WelcomePage },
-    { path: '/signup', name: 'sign up', component: SignUp },
-    { path: '/signin', name: 'sign in', component: SignIn },
+    { path: '/signup', name: 'sign up form', component: signUp },
     { path: '/carlos', name: 'Carlos tareas', component: devCarlos },
     { path: '/hector', name: 'Hector tareas', component: devHector },
     { path: '/nestor', name: 'Nestor tareas', component: devNestor },
