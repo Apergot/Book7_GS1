@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 
+Vue.prototype.$http = axios
+
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://vue-firebase-tut-6ec5a.firebaseio.com'
