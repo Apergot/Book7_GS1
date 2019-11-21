@@ -15,7 +15,7 @@
         <router-link tag="b-nav-item" to="/hector" class="link">Héctor</router-link>
         <router-link tag="b-nav-item" to="/nestor" class="link">Néstor</router-link>
         <router-link tag="b-nav-item" to="/levi" class="link">Levi</router-link>
-        <div>
+        <div v-if="this.$route.path != '/signup'">
           <b-button @click="showModal" id="show-btn">Sign in</b-button>
         </div>
       </b-navbar-nav>
@@ -25,17 +25,18 @@
   <b-modal
           ref="signInModal"
           hide-footer
+          hide-header
           centered
           hide-backdrop
-          size="sm-lg"
           title="Sign into your account"
           @show="resetModal"
           @hidden="resetModal"
   >
     <div class="signin-form">
       <b-form @submit.prevent="onSubmitSignIn">
-        <p v-if="!correctLogIn" class="incorrect"> Incorrect email/password, try again</p>
+        <h2 class="title">Sign in</h2>
         <b-form-group class="input">
+          <p v-if="!correctLogIn" class="incorrect"> Incorrect email/password, try again</p>
           <b-form-input
                   type="email"
                   id="email"
@@ -98,6 +99,7 @@ export default {
     resetModal () {
       this.email = ''
       this.password = ''
+      this.correctLogIn = true
     },
     showModal () {
       this.$refs['signInModal'].toggle('#toggle-btn')
@@ -134,5 +136,15 @@ export default {
 
   .incorrect{
     color: red;
+  }
+
+  .input{
+    width: 75%;
+    margin-left: 12.5%;
+  }
+
+  .title{
+    margin-bottom: 5%;
+    text-align: center;
   }
 </style>
