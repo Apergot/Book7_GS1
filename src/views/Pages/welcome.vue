@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <ul v-for="(item, index) in items" :key="item.id">
-      <li >{{index + item.volumeInfo.infoLink}}</li>
+  <div v-if="gotResults">
+    <ul v-for="(book, index) in books" :key="book.id">
+        <li v-if="book.volumeInfo.imageLinks !== undefined">
+           <img :src=book.volumeInfo.imageLinks.thumbnail :alt=book.id >
+          {{index + book.volumeInfo.imageLinks.thumbnail}}
+        </li>
     </ul>
   </div>
 </template>
@@ -10,25 +13,25 @@
 export default {
   data () {
     return {
-      items: []
+      books: [],
+      gotResults: false
     }
   },
   methods: {
     getInitialPresentation: async function () {
-      var result
       await this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=-term&orderBy=newest&key=${process.env.VUE_APP_GOOGLE_BOOKS_API_KEY}`)
-        .then(resp => {
-          result = resp.data.items
+        .then((data) => {
+          this.books = data.body.items
         })
         .catch(err => {
           console.log(err)
         })
-      console.log('Este es el bueno', result)
-      this.items = JSON.parse(JSON.stringify(result))
     }
   },
-  created () {
-    this.getInitialPresentation()
+  async created () {
+    await this.getInitialPresentation()
+    this.gotResults = true
+    console.log(this.books)
   }
 }
 </script>
