@@ -1,28 +1,36 @@
-<template lang='pug'>
-#MyFirstSlideshow
-  .eg-slideshow
-    slide
-      h1 Hi there !
-      h4 This is your first slideshow !
-
-    slide(enter='bounceInRight' leave='fadeOut')
-      h3 Hey modify me !
-      p.
-        Come on modify me ! If you are running the development server,
-        you will see the changes take effect immediately
-
-    slide(enter='fadeIn')
-      h3 Want cool effects?
-      p.
-        Code your own, or try stealing for the other slideshows !
+<template>
+    <carousel class="slideshow">
+        <slide v-for="book in books" :key="book.id">
+            <img
+                v-if="book.volumeInfo.imageLinks !== undefined"
+                :src=book.volumeInfo.imageLinks.thumbnail img-alt="Card image"
+                class="slideshow-item">
+        </slide>
+    </carousel>
 </template>
 <script>
 export default {
-  props: ['books']
+  props: ['books'],
+  imgBanner: '/../../assets/no-img.jpg'
 }
 </script>
 <style>
-    .book{
-        display: block;
+    .VueCarousel-pagination{
+        margin-top: 0!important;
+        display: none !important;
+    }
+
+    .VueCarousel-dot--active{
+        color: #c98261 !important;
+    }
+    .slideshow-item{
+        max-width: 10rem;
+        min-height: 15rem;
+        max-height: 15rem;
+        margin-right: 15px !important;
+        border-radius: 5px;
+    }
+    .VueCarousel-inner{
+        flex-basis: auto !important;
     }
 </style>
