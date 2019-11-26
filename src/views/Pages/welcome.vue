@@ -1,15 +1,12 @@
 <template>
-  <div v-if="gotResults">
-    <ul v-for="(book, index) in books" :key="book.id">
-        <li v-if="book.volumeInfo.imageLinks !== undefined">
-           <img :src=book.volumeInfo.imageLinks.thumbnail :alt=book.id >
-          {{index + book.volumeInfo.imageLinks.thumbnail}}
-        </li>
-    </ul>
-  </div>
+  <b-container v-if="gotResults">
+      <app-book-result :books="books"></app-book-result>
+  </b-container>
 </template>
 
 <script>
+import BookGroup from '../Components/BookResultsGroup'
+
 export default {
   data () {
     return {
@@ -32,6 +29,9 @@ export default {
     await this.getInitialPresentation()
     this.gotResults = true
     console.log(this.books)
+  },
+  components: {
+    appBookResult: BookGroup
   }
 }
 </script>
