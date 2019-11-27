@@ -22,6 +22,8 @@
     </form>
     <hr />
     <br />
+    <button @click="nextPage">Next Page</button>
+    <button @click="previousPage">Previous Page</button>
     <table class="table table-striped">
       <tbody>
 <tr v-for="book in searchResults.items" :key="book.volumeInfo.identifier">
@@ -53,28 +55,47 @@ export default {
   name: 'Form',
   data () {
     return {
+      comp: 0,
       radio: '',
       texto: '',
       searchTerm: '',
       searchResults: [],
+      startIndex: 0,
       optciones: [
         { value: 'intitle', text: 'Título' },
         { value: 'inauthor', text: 'Autor' },
-        { value: 'subject', text: 'Categoría' },
+        { value: 'fecha', text: 'Fecha' },
         { value: 'isbn', text: 'ISBN' }
       ]
     }
   },
   methods: {
     search () {
-      this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=` + this.radio + ':' + this.searchTerm + '&maxResults=40')
+      this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=${this.radio}:${this.searchTerm}&maxResults=10&startIndex=${this.startIndex}`)
         .then(response => {
           this.searchResults = response.data
         })
         .catch(e => {
           console.log(e)
         })
-      this.searchTerm = ''
+    },
+    nextPage () {
+      this.comp = this.startIndex
+      if ((this.comp += 10) < 100) {
+        this.startIndex += 10
+        this.search()
+        console.log(this.startIndex)
+      }
+      this.comp = 0
+    },
+    previousPage () {
+      this.comp = this.startIndex
+      if ((this.comp -= 10) >= 0) {
+        this.startIndex -= 10
+        this.search()
+        console.log(this.startIndex)
+      }
+      this.comp = 0
     },
     bookAuthors (book) {
       let authors = book.volumeInfo.authors
