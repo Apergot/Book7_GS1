@@ -35,11 +35,18 @@ const devCarlos = resolve => {
   })
 }
 
+const bookResult = resolve => {
+  require.ensure(['./views/Pages/bookResult'], () => {
+    resolve(require('./views/Pages/bookResult.vue'))
+  })
+}
+
 export default new Router({
   mode: 'history',
   routes: [
     { path: '/', name: 'home', component: WelcomePage },
     { path: '/signup', name: 'sign up form', component: signUp },
+    { path: '/book', name: 'bookpage', component: bookResult, props: (route) => ({ ...route.params }) },
     { path: '/carlos', name: 'Carlos tareas', component: devCarlos },
     { path: '/hector', name: 'Hector tareas', component: devHector },
     { path: '/nestor', name: 'Nestor tareas', component: devNestor },

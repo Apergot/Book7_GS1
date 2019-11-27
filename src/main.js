@@ -7,9 +7,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueResource from 'vue-resource'
+import VueCarousel from 'vue-carousel'
 
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
+Vue.use(VueCarousel)
 
 Vue.config.productionTip = false
 
