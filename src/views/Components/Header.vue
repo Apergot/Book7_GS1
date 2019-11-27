@@ -11,10 +11,7 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <router-link tag="b-nav-item" to="/carlos" class="link">Carlos</router-link>
-        <router-link tag="b-nav-item" to="/hector" class="link">Héctor</router-link>
-        <router-link tag="b-nav-item" to="/nestor" class="link">Néstor</router-link>
-        <router-link tag="b-nav-item" to="/levi" class="link">Levi</router-link>
+        <router-link tag="b-nav-item" to="/levi" class="link">Search</router-link>
         <div v-if="this.$route.path != '/signup'">
           <b-button @click="showModal" id="show-btn">Sign in</b-button>
         </div>

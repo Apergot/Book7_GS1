@@ -1,17 +1,26 @@
 <template>
     <carousel class="slideshow">
         <slide v-for="book in books" :key="book.id">
-            <img
+            <img @click="pushBookToRouter(book)"
                 v-if="book.volumeInfo.imageLinks !== undefined"
                 :src=book.volumeInfo.imageLinks.thumbnail img-alt="Card image"
-                class="slideshow-item">
+            class="slideshow-item">
         </slide>
     </carousel>
 </template>
 <script>
 export default {
   props: ['books'],
-  imgBanner: '/../../assets/no-img.jpg'
+  methods: {
+    pushBookToRouter: function (book) {
+      this.$router.push({
+        name: 'bookpage',
+        params: {
+          book
+        }
+      })
+    }
+  }
 }
 </script>
 <style>
