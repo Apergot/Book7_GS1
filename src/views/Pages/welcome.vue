@@ -8,7 +8,7 @@
         <app-book-result :books="freshBooks"></app-book-result>
     </div>
       <div>
-        <h1>Fiction</h1>
+        <h1>Juvenile fiction</h1>
         <app-book-result :books="fictionBooks"></app-book-result>
       </div>
     </b-container>
@@ -35,7 +35,7 @@ export default {
         .catch(err => {
           console.log(err)
         })
-      this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=subject+fiction&maxResults=20&key=${process.env.VUE_APP_GOOGLE_BOOKS_API_KEY}`)
+      this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=subject:"JUVENILE+FICTION"&maxResults=20&key=${process.env.VUE_APP_GOOGLE_BOOKS_API_KEY}`)
         .then((data) => {
           this.fictionBooks = data.body.items
         })

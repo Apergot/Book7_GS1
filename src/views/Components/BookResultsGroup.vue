@@ -38,8 +38,8 @@ export default {
         max-height: 15rem;
         margin-right: 15px !important;
         border-radius: 5px;
-    }
+    }/*
     .VueCarousel-inner{
         flex-basis: auto !important;
-    }
+    }*/
 </style>
