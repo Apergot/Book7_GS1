@@ -4,20 +4,37 @@
     <transition name="slide" mode="out-in">
       <router-view></router-view>
     </transition>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import Header from './views/Components/Header'
+import Footer from './views/Components/Footer'
 
 export default {
   components: {
-    appHeader: Header
+    appHeader: Header,
+    appFooter: Footer
   }
 }
 </script>
 
 <style>
+
+    body {
+      height: 100%;
+      min-height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    body::after {
+      content: '';
+      display: block;
+      height: 100%;
+    }
+
     .slide-enter-active{
         animation: slide-in 350ms ease-out forwards;
     }

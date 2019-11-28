@@ -115,7 +115,7 @@ export default {
   }
 
   .navbar{
-    background-color: #c98261;
+    background-color: #f8f9fa;
   }
 
   .link{
