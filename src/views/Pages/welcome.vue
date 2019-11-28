@@ -9,7 +9,7 @@
     </div>
       <div>
         <h1>Juvenile fiction</h1>
-        <app-book-result :books="fictionBooks"></app-book-result>
+        <app-book-result :books="juvenileFictionBooks"></app-book-result>
       </div>
     </b-container>
   </div>
@@ -22,12 +22,12 @@ export default {
   data () {
     return {
       freshBooks: [],
-      fictionBooks: [],
+      juvenileFictionBooks: [],
       gotResults: false
     }
   },
   methods: {
-    getInitialPresentation: function () {
+    getFreshBooksPresentation: function () {
       this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=-term&orderBy=newest&maxResults=20&key=${process.env.VUE_APP_GOOGLE_BOOKS_API_KEY}`)
         .then((data) => {
           this.freshBooks = data.body.items
@@ -35,9 +35,11 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    getJuvenileFictionBooks: function () {
       this.$http.get(`https://www.googleapis.com/books/v1/volumes?q=subject:"JUVENILE+FICTION"&maxResults=20&key=${process.env.VUE_APP_GOOGLE_BOOKS_API_KEY}`)
         .then((data) => {
-          this.fictionBooks = data.body.items
+          this.juvenileFictionBooks = data.body.items
         })
         .catch(err => {
           console.log(err)
@@ -45,7 +47,8 @@ export default {
     }
   },
   async created () {
-    this.getInitialPresentation()
+    this.getFreshBooksPresentation()
+    this.getJuvenileFictionBooks()
     this.gotResults = true
   },
   components: {
