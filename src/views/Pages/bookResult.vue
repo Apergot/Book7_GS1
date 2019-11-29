@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-container :data="book">
+        <b-container :data="book" class="bookrescont">
             <table id="summary_content_table" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -60,6 +60,10 @@ export default {
         line-height: 1.2em;
         clear: both;
         border-top: 1px solid #ebebeb
+    }
+
+    .bookrescont {
+        margin-bottom: 20%;
     }
 
     table {
