@@ -72,7 +72,19 @@ export default new Router({
         }
       }
     },
-    { path: '/book', name: 'bookpage', component: bookResult, props: (route) => ({ ...route.params }) },
+    {
+      path: '/book',
+      name: 'bookpage',
+      component: bookResult,
+      props: true,
+      beforeEnter: (to, from, next) => {
+        if (to.params.book) {
+          next()
+        } else {
+          next({ book: 'home' })
+        }
+      }
+    },
     { path: '/carlos', name: 'Carlos tareas', component: devCarlos },
     { path: '/hector', name: 'Hector tareas', component: devHector },
     { path: '/nestor', name: 'Nestor tareas', component: devNestor },

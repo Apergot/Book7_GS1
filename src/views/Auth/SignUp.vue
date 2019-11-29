@@ -102,6 +102,17 @@ export default {
       }
       console.log(formData)
       this.$store.dispatch('signup', formData)
+        .then(response => {
+          this.$store.dispatch('login', { email: formData.email, password: formData.password })
+            .then(response => {
+              if (response.status === 200) {
+                this.$router.push({ name: 'home' })
+              }
+            })
+            .catch(reject => {
+              console.log('No se ha podido logear')
+            })
+        })
     }
   }
 }
@@ -135,46 +146,6 @@ export default {
     }
     .checkbox{
       margin: 5% 0;
-    }
-  }
-
-  @media(min-width: 992px) {
-    .logo{
-      text-align: center;
-    }
-    .submit{
-      width: 33%;
-      margin-left: 33%;
-    }
-
-    .signup-form{
-      margin-top: 2%;
-      width: 40%;
-      margin-left: 30%;
-      box-sizing: border-box;
-      box-shadow: 5px 10px 18px #888888;
-      border-radius: 5px;
-      border: 1px solid #c0c2c4;
-      padding: 10px;
-    }
-  }
-
-  @media(max-width: 768px) {
-
-    .logo{
-      margin: 5%;
-      text-align: center;
-    }
-    .input-inline{
-      margin-top: 5%;
-      margin-right: 2%;
-    }
-    .checkbox{
-    margin: 5% 0;
-    }
-    .submit{
-      width: 80%;
-      margin: 0 10%;
     }
   }
 </style>

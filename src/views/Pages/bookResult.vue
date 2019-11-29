@@ -18,13 +18,14 @@
                     <div id="synopsis-window" style="height: 5.85em; overflow: hidden;">
                         <div v-if="book.volumeInfo.description !== undefined" id="synopsistext" dir="ltr" class="sa">{{ book.volumeInfo.description }}</div>
                     </div><a class="secondary" style="cursor: pointer; padding-top: 6px;"></a></div>
-                <div class="search_box_wrapper"></div>
+                <div class="search_box_wrapper">
+                    <b-button @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
+                </div>
             </td>
         </tr>
     </tbody>
 </table>
         </b-container>
-        <b-button @click="joinBookChat" :disabled="loggedUser">Join Book Chat</b-button>
     </div>
 </template>
 <script>
@@ -32,7 +33,6 @@ export default {
   props: ['book'],
   data () {
     return {
-      bookResult: { ...this.book },
       loggedUser: false
     }
   },

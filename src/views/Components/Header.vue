@@ -12,8 +12,9 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <router-link tag="b-nav-item" to="/search" class="link">Search</router-link>
-        <div v-if="this.$route.path != '/signup'">
-          <b-button @click="showModal" id="show-btn">Sign in</b-button>
+        <div>
+          <b-button @click="showModal"  v-if="!alreadyLoggedIn" id="show-btn">Sign in</b-button>
+          <b-button disabled v-else>{{ this.$store.getters.user.email }}</b-button>
         </div>
       </b-navbar-nav>
     </b-collapse>
@@ -71,7 +72,8 @@ export default {
     return {
       email: '',
       password: '',
-      correctLogIn: true
+      correctLogIn: false,
+      alreadyLoggedIn: false
     }
   },
   methods: {
@@ -85,6 +87,7 @@ export default {
         .then(response => {
           if (response.status === 200) {
             this.correctLogIn = true
+            this.alreadyLoggedIn = true
             this.$refs['signInModal'].hide()
           }
         })
