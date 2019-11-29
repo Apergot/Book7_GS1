@@ -3,6 +3,7 @@ node_modules
 /dist
 
 .env
+init.js
 
 # Log files
 npm-debug.log*
