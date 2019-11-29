@@ -2,9 +2,8 @@
 node_modules
 /dist
 
-# local env files
-.env.local
-.env.*.local
+.env
+init.js
 
 # Log files
 npm-debug.log*
@@ -19,3 +18,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+src/firebase/init.js
