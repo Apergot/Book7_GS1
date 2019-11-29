@@ -48,8 +48,7 @@ export default {
     joinBookChat () {
       if (this.$store.getters.user) {
         this.loggedUser = true
-        console.log(this.$store.getters.user.email, this.bookResult.id)
-        this.$router.push({ name: 'chat', params: { email: this.$store.getters.user.email, bookId: this.bookResult.id } })
+        this.$router.push({ name: 'chat', params: { email: this.$store.getters.user.email, bookId: this.book.id, bookTitle: this.book.volumeInfo.title } })
       }
     }
   }

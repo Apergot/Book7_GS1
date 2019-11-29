@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container class="container">
     <form @submit.prevent="search">
       <b-row>
         <b-col md="4"></b-col>
@@ -7,7 +7,7 @@
           <b-form-input type="text" v-model.trim="searchTerm"></b-form-input>
         </b-col>
         <b-col md="4">
-          <input type="submit" value="search" id="search" />
+          <b-button variant="outline-primary" type="submit" value="search" id="search" @click="show">Search</b-button>
         </b-col>
       </b-row>
       <b-row>
@@ -20,17 +20,21 @@
     </form>
     <hr />
     <br />
+    <div v-if="showbuttons">
+    <b-button pill variant="outline-primary" class="pageButton" @click="previousPage">Previous Page</b-button>
+    <b-button pill variant="outline-primary" class="pageButton" @click="nextPage">Next Page</b-button>
+    </div>
     <table class="table table-striped">
       <tbody>
-        <tr v-for="book in searchResults.items" :key="book.volumeInfo.identifier">
-          <td>
+        <tr v-for="book in searchResults" :key="book.id" @click="pushBookToRouter(book)" class="search-result">
+          <td v-if="book.volumeInfo !== undefined">
             <img
               :src="'http://books.google.com/books/content?id=' + book.id + '&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'"
               class="search-result--thumbnail"
             />
           </td>
           <td>
-            <div class="item-info">
+            <div>
               <h3>{{ book.volumeInfo.title }}</h3>
               <h4 v-if="book.volumeInfo.authors">Por {{ bookAuthors(book) }}</h4>
               <p v-if="book.volumeInfo.publishedDate">
@@ -40,20 +44,19 @@
                   v-if="book.volumeInfo.publisher"
                 >por Ed. {{ book.volumeInfo.publisher }}</span>
               </p>
-              <span v-if="book.volumeInfo.categories">Categoria: {{ book.volumeInfo.categories }}</span>
+              <span v-if="book.volumeInfo.categories">Categoria: {{ book.volumeInfo.categories }} </span>
             </div>
           </td>
           <div>
-            <td>
-              <a href>
-                <img src="@/assets/review.png" alt width="150" />
-              </a>
-            </td>
           </div>
         </tr>
       </tbody>
     </table>
-  </div>
+    <div v-if="showbuttons">
+    <b-button class="pageButton" pill variant="outline-primary" @click="previousPage">Previous Page</b-button>
+    <b-button class="pageButton" pill variant="outline-primary" @click="nextPage">Next Page</b-button>
+    </div>
+  </b-container>
 </template>
 
 <script>
@@ -61,10 +64,14 @@ export default {
   name: 'Form',
   data () {
     return {
+      showbuttons: false,
       radio: '',
       texto: '',
       searchTerm: '',
       searchResults: [],
+      comp: 0,
+      startIndex: 0,
+      seen: false,
       optciones: [
         { value: 'intitle', text: 'Título' },
         { value: 'inauthor', text: 'Autor' },
@@ -77,19 +84,14 @@ export default {
     search () {
       this.$http
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=` +
-            this.radio +
-            ':' +
-            this.searchTerm +
-            '&maxResults=40'
-        )
+          `https://www.googleapis.com/books/v1/volumes?q=${this.radio}:${this.searchTerm}&maxResults=10&startIndex=${this.startIndex}`)
         .then(response => {
-          this.searchResults = response.data
+          this.searchResults = response.data.items
+          this.showbuttons = true
         })
         .catch(e => {
           console.log(e)
         })
-      this.searchTerm = ''
     },
     bookAuthors (book) {
       let authors = book.volumeInfo.authors
@@ -102,7 +104,58 @@ export default {
         authors += lastAuthor
       }
       return authors
+    },
+    nextPage () {
+      this.comp = this.startIndex
+      if ((this.comp += 10) < 100) {
+        this.startIndex += 10
+        this.search()
+        console.log(this.startIndex)
+      }
+      this.comp = 0
+    },
+    previousPage () {
+      this.comp = this.startIndex
+      if ((this.comp -= 10) >= 0) {
+        this.startIndex -= 10
+        this.search()
+        console.log(this.startIndex)
+      }
+      this.comp = 0
+    },
+    show () {
+      if (!this.seen) {
+        this.seen = !this.seen
+      }
+    },
+    pushBookToRouter: function (book) {
+      this.$router.push({
+        name: 'bookpage',
+        params: {
+          book
+        }
+      })
     }
   }
 }
 </script>
+<style scope>
+
+  .container {
+    margin-top: 3%;
+  }
+
+  .pageButton {
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .search-result {
+    cursor: pointer;
+  }
+
+  .review-icon {
+    size: 10%;
+  }
+</style>

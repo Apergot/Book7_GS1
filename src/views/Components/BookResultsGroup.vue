@@ -63,5 +63,6 @@ export default {
 
     .bookimg {
       margin-left: 15%;
+      cursor: pointer;
     }
 </style>

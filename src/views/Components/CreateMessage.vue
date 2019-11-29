@@ -14,19 +14,22 @@ import fb from './../../firebase/init'
 
 export default {
   name: 'CreateMessage',
-  props: ['email'],
+  props: ['propCreated'],
   data () {
     return {
       newMessage: null,
       errorText: null
     }
   },
+  created () {
+    console.log(this.propCreated.bookId)
+  },
   methods: {
     createMessage () {
       if (this.newMessage) {
-        fb.collection('messages').add({
+        fb.collection(`messages${this.propCreated.bookId}`).add({
           message: this.newMessage,
-          email: this.email,
+          email: this.propCreated.email,
           timestamp: Date.now()
         }).catch(err => {
           console.log(err)

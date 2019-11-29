@@ -11,30 +11,6 @@ const signUp = resolve => {
   })
 }
 
-const devHector = resolve => {
-  require.ensure(['./views/Pages/devHector.vue'], () => {
-    resolve(require('./views/Pages/devHector.vue'))
-  })
-}
-
-const devNestor = resolve => {
-  require.ensure(['./views/Pages/devNestor.vue'], () => {
-    resolve(require('./views/Pages/devNestor.vue'))
-  })
-}
-
-const devLevi = resolve => {
-  require.ensure(['./views/Pages/devLevi.vue'], () => {
-    resolve(require('./views/Pages/devLevi.vue'))
-  })
-}
-
-const devCarlos = resolve => {
-  require.ensure(['./views/Pages/devCarlos.vue'], () => {
-    resolve(require('./views/Pages/devCarlos.vue'))
-  })
-}
-
 const searchPage = resolve => {
   require.ensure(['./views/Pages/search.vue'], () => {
     resolve(require('./views/Pages/search.vue'))
@@ -53,11 +29,18 @@ const Chat = resolve => {
   })
 }
 
+const Contact = resolve => {
+  require.ensure(['./views/Pages/Contact.vue'], () => {
+    resolve(require('./views/Pages/Contact.vue'))
+  })
+}
+
 export default new Router({
   mode: 'history',
   routes: [
     { path: '/', name: 'home', component: WelcomePage },
     { path: '/signup', name: 'sign up form', component: signUp },
+    { path: '/contact', name: 'contact', component: Contact },
     { path: '/search', name: 'search', component: searchPage },
     {
       path: '/chat',
@@ -68,7 +51,7 @@ export default new Router({
         if (to.params.email) {
           next()
         } else {
-          next({ email: 'home' })
+          next({ name: 'home' })
         }
       }
     },
@@ -81,13 +64,9 @@ export default new Router({
         if (to.params.book) {
           next()
         } else {
-          next({ book: 'home' })
+          next({ name: 'home' })
         }
       }
-    },
-    { path: '/carlos', name: 'Carlos tareas', component: devCarlos },
-    { path: '/hector', name: 'Hector tareas', component: devHector },
-    { path: '/nestor', name: 'Nestor tareas', component: devNestor },
-    { path: '/levi', name: 'Levi tareas', component: devLevi }
+    }
   ]
 })

@@ -8,6 +8,7 @@
       <p class="footer-links">
         <router-link tag="a" to="/" class="link">Home</router-link> ·
         <router-link tag="a" to="/search" class="link">Search</router-link>
+        <router-link tag="a" to="/contact" class="link">Contact</router-link>
       </p>
 
       <p class="footer-company-name">Book7 &copy; 2019</p>

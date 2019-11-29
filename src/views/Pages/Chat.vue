@@ -1,7 +1,6 @@
 <template>
     <b-container class="chat">
-        <h2 class="text-primary text-center">Book Chat</h2>
-        <h5 class="text-secondary text-center">Powered by Perdomo, Vue.js & Firebase</h5>
+        <h2 class="text-primary text-center" style="margin-bottom:3%;">{{ bookTitle }}</h2>
         <b-card>
             <b-card-text>
                 <p class="text-secondary nomessages" v-if="messages.length == 0">
@@ -14,10 +13,12 @@
                         <span class="text-secondary time">{{ message.timestamp }}</span>
                     </div>
                 </div>
-                <div class="card-action">
-                    <CreateMessage :email="email" />
-                </div>
             </b-card-text>
+            <b-card-footer>
+              <div class="card-action">
+                    <CreateMessage :propCreated="this.propCreated" />
+                </div>
+            </b-card-footer>
         </b-card>
     </b-container>
 </template>
@@ -28,7 +29,7 @@ import moment from 'moment'
 
 export default {
   name: 'Chat',
-  props: ['email', 'bookId'],
+  props: ['email', 'bookId', 'bookTitle'],
   components: {
     CreateMessage
   },
@@ -43,7 +44,7 @@ export default {
   },
   created () {
     console.log('Esto es lo que quiero pasar', this.propCreated.bookId, this.propCreated.email)
-    let ref = fb.collection('messages').orderBy('timestamp')
+    let ref = fb.collection(`messages${this.propCreated.bookId}`).orderBy('timestamp')
 
     ref.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
