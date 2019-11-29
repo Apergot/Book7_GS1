@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-container>
+        <b-container :data="book">
             <table id="summary_content_table" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -24,6 +24,7 @@
     </tbody>
 </table>
         </b-container>
+        <b-button @click="joinBookChat" :disabled="loggedUser">Join Book Chat</b-button>
     </div>
 </template>
 <script>
@@ -31,7 +32,25 @@ export default {
   props: ['book'],
   data () {
     return {
-      bookResult: this.book
+      bookResult: { ...this.book },
+      loggedUser: false
+    }
+  },
+  computed: {
+    email () {
+      return !this.$store.getters.user ? false : this.$store.getters.user.email
+    }
+  },
+  created () {
+    this.$store.dispatch('fetchUser')
+  },
+  methods: {
+    joinBookChat () {
+      if (this.$store.getters.user) {
+        this.loggedUser = true
+        console.log(this.$store.getters.user.email, this.bookResult.id)
+        this.$router.push({ name: 'chat', params: { email: this.$store.getters.user.email, bookId: this.bookResult.id } })
+      }
     }
   }
 }

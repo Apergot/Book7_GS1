@@ -42,8 +42,14 @@ const searchPage = resolve => {
 }
 
 const bookResult = resolve => {
-  require.ensure(['./views/Pages/bookResult'], () => {
+  require.ensure(['./views/Pages/bookResult.vue'], () => {
     resolve(require('./views/Pages/bookResult.vue'))
+  })
+}
+
+const Chat = resolve => {
+  require.ensure(['./views/Pages/Chat.vue'], () => {
+    resolve(require('./views/Pages/Chat.vue'))
   })
 }
 
@@ -53,6 +59,19 @@ export default new Router({
     { path: '/', name: 'home', component: WelcomePage },
     { path: '/signup', name: 'sign up form', component: signUp },
     { path: '/search', name: 'search', component: searchPage },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: Chat,
+      props: true,
+      beforeEnter: (to, from, next) => {
+        if (to.params.email) {
+          next()
+        } else {
+          next({ email: 'home' })
+        }
+      }
+    },
     { path: '/book', name: 'bookpage', component: bookResult, props: (route) => ({ ...route.params }) },
     { path: '/carlos', name: 'Carlos tareas', component: devCarlos },
     { path: '/hector', name: 'Hector tareas', component: devHector },
