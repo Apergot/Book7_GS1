@@ -1,5 +1,5 @@
 <template>
-  <b-container class="container">
+  <b-container class="container searchcont">
     <form @submit.prevent="search">
       <b-row>
         <b-col md="4"></b-col>
@@ -143,6 +143,10 @@ export default {
 
   .container {
     margin-top: 3%;
+  }
+
+  .searchcont {
+    margin-bottom: 25%;
   }
 
   .pageButton {
