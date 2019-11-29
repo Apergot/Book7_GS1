@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueChatScroll from 'vue-chat-scroll'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -9,15 +10,15 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueResource from 'vue-resource'
 import VueCarousel from 'vue-carousel'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTwitter, faFacebookF, faGithub , faLinkedin, faVuejs, faPhp, faJava,faHtml5,faJs, faCss3} from '@fortawesome/free-brands-svg-icons'
-import { faMapMarkerAlt, faEnvelope, faPhone, faDatabase, faLink} from '@fortawesome/free-solid-svg-icons'
+import { faTwitter, faFacebookF, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faMapMarkerAlt, faEnvelope, faPhone, faLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
-  faTwitter, faFacebookF, faGithub, faLinkedin, faMapMarkerAlt,
-   faEnvelope, faPhone, faVuejs, faPhp, faJava,faHtml5,faJs, faCss3, faDatabase, faLink)
+  faTwitter, faFacebookF, faGithub, faLinkedin, faMapMarkerAlt, faEnvelope, faPhone, faLink)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+Vue.use(VueChatScroll)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueCarousel)

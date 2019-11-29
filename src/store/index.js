@@ -45,7 +45,7 @@ export default new Vuex.Store({
           returnSecureToken: true
         })
           .then(res => {
-            console.log(res)
+            console.log('id', res)
             commit('authUser', {
               token: res.data.idToken,
               userId: res.data.localId
@@ -61,6 +61,17 @@ export default new Vuex.Store({
       }
       globalAxios.post('/users.json' + '?auth=' + state.idToken, userData)
         .then(res => console.log(res))
+        .catch(error => console.log(error))
+    },
+    fetchUser ({ commit, state }) {
+      if (!state.idToken) {
+        return
+      }
+      globalAxios.post(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, { idToken: state.idToken })
+        .then(res => {
+          console.log(res)
+          commit('storeUser', res.data.users[0])
+        })
         .catch(error => console.log(error))
     }
   },

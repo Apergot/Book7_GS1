@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-container>
+        <b-container :data="book">
             <table id="summary_content_table" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -18,7 +18,9 @@
                     <div id="synopsis-window" style="height: 5.85em; overflow: hidden;">
                         <div v-if="book.volumeInfo.description !== undefined" id="synopsistext" dir="ltr" class="sa">{{ book.volumeInfo.description }}</div>
                     </div><a class="secondary" style="cursor: pointer; padding-top: 6px;"></a></div>
-                <div class="search_box_wrapper"></div>
+                <div class="search_box_wrapper">
+                    <b-button @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
+                </div>
             </td>
         </tr>
     </tbody>
@@ -31,7 +33,24 @@ export default {
   props: ['book'],
   data () {
     return {
-      bookResult: this.book
+      loggedUser: false
+    }
+  },
+  computed: {
+    email () {
+      return !this.$store.getters.user ? false : this.$store.getters.user.email
+    }
+  },
+  created () {
+    this.$store.dispatch('fetchUser')
+  },
+  methods: {
+    joinBookChat () {
+      if (this.$store.getters.user) {
+        this.loggedUser = true
+        console.log(this.$store.getters.user.email, this.bookResult.id)
+        this.$router.push({ name: 'chat', params: { email: this.$store.getters.user.email, bookId: this.bookResult.id } })
+      }
     }
   }
 }
