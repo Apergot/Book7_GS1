@@ -19,7 +19,7 @@
                         <div v-if="book.volumeInfo.description !== undefined" id="synopsistext" dir="ltr" class="sa">{{ book.volumeInfo.description }}</div>
                     </div><a class="secondary" style="cursor: pointer; padding-top: 6px;"></a></div>
                 <div class="search_box_wrapper">
-                    <b-button @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
+                    <b-button @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;" v-b-tooltip.hover.right title="You need to log in!">Join Book Chat</b-button>
                 </div>
             </td>
         </tr>
