@@ -7,7 +7,7 @@
 
       <p class="footer-links">
         <router-link tag="a" to="/" class="link">Home</router-link> ·
-        <router-link tag="a" to="/search" class="link">Search</router-link>
+        <router-link tag="a" to="/search" class="link">Search</router-link> ·
         <router-link tag="a" to="/contact" class="link">Contact</router-link>
       </p>
 

@@ -73,9 +73,9 @@ export default {
       startIndex: 0,
       seen: false,
       optciones: [
-        { value: 'intitle', text: 'Título' },
-        { value: 'inauthor', text: 'Autor' },
-        { value: 'subject', text: 'Categoría' },
+        { value: 'intitle', text: 'Title' },
+        { value: 'inauthor', text: 'Author' },
+        { value: 'subject', text: 'Category' },
         { value: 'isbn', text: 'ISBN' }
       ]
     }
