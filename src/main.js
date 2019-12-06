@@ -22,7 +22,6 @@ Vue.use(VueChatScroll)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueCarousel)
-
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://vue-firebase-tut-6ec5a.firebaseio.com'

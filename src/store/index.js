@@ -18,9 +18,17 @@ export default new Vuex.Store({
     },
     storeUser (state, user) {
       state.user = user
+    },
+    logOutUser (state) {
+      state.user = null
+      state.userId = null
+      state.idToken = null
     }
   },
   actions: {
+    logout ({ commit }) {
+      commit('logOutUser')
+    },
     signup ({ commit, dispatch }, authData) {
       axios.post(`/accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
         email: authData.email,

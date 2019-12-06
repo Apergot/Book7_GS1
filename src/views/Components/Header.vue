@@ -14,8 +14,11 @@
         <router-link tag="b-nav-item" to="/search" class="link">Search</router-link>
         <router-link tag="b-nav-item" to="/contact" class="link">Contact</router-link>
         <div>
-          <b-button @click="showModal"  v-if="!alreadyLoggedIn" id="show-btn">Sign in</b-button>
-          <b-button disabled v-else>{{ this.$store.getters.user.email }}</b-button>
+          <b-button pill variant="outline-primary" @click="showModal"  v-if="!alreadyLoggedIn" id="show-btn">Sign in</b-button>
+          <div v-if="alreadyLoggedIn">
+            <b-button pill variant="outline-primary" class="nav-button" @click="logout">Log out</b-button>
+            <b-button disabled pill variant="outline-primary">{{ this.$store.getters.user.email }}</b-button>
+          </div>
         </div>
       </b-navbar-nav>
     </b-collapse>
@@ -54,7 +57,7 @@
           ></b-form-input>
         </b-form-group>
         <div>
-          <b-button class="submit" type="submit">Submit</b-button>
+          <b-button variant="outline-primary" class="submit" type="submit">Submit</b-button>
         </div>
         <div @click="hideModal">
           <router-link tag="a" to="/signup" class="link">
@@ -108,6 +111,11 @@ export default {
     },
     hideModal () {
       this.$refs['signInModal'].hide()
+    },
+    logout () {
+      this.$store.dispatch('logout')
+      this.alreadyLoggedIn = false
+      this.$router.push('/')
     }
   }
 }
@@ -148,5 +156,9 @@ export default {
   .title{
     margin-bottom: 5%;
     text-align: center;
+  }
+
+  .nav-button {
+    margin-right: 5px;
   }
 </style>
