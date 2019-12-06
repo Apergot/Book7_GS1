@@ -1,7 +1,7 @@
 <template>
     <div>
-        <b-container :data="book">
-            <table id="summary_content_table" cellspacing="0" cellpadding="0">
+    <b-container :data="book">
+    <table id="summary_content_table" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
             <td id="bookinfo">
@@ -17,15 +17,14 @@
                 <div id="synopsis">
                     <div id="synopsis-window" style="height: 5.85em; overflow: hidden;">
                         <div v-if="book.volumeInfo.description !== undefined" id="synopsistext" dir="ltr" class="sa">{{ book.volumeInfo.description }}</div>
-                    </div><a class="secondary" style="cursor: pointer; padding-top: 6px;"></a></div>
-                <div class="search_box_wrapper">
-                    <b-button @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
+                    </div><a class="secondary" style="cursor: pointer; padding-top: 6px;"></a>
                 </div>
             </td>
         </tr>
     </tbody>
-</table>
-        </b-container>
+    <b-button pill variant="outline-primary" class="chat-button" @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
+    </table>
+    </b-container>
     </div>
 </template>
 <script>
@@ -134,5 +133,10 @@ export default {
 
     .bookcover img {
         padding: 1px;
+    }
+
+    .chat-button {
+        position: absolute;
+        left: 75%;
     }
 </style>

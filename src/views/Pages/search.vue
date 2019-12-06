@@ -90,7 +90,6 @@ export default {
           this.showbuttons = true
         })
         .catch(e => {
-          console.log(e)
         })
     },
     bookAuthors (book) {
@@ -110,7 +109,6 @@ export default {
       if ((this.comp += 10) < 100) {
         this.startIndex += 10
         this.search()
-        console.log(this.startIndex)
       }
       this.comp = 0
     },
@@ -119,7 +117,6 @@ export default {
       if ((this.comp -= 10) >= 0) {
         this.startIndex -= 10
         this.search()
-        console.log(this.startIndex)
       }
       this.comp = 0
     },

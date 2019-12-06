@@ -133,4 +133,8 @@ export default {
       margin: 5% 0;
     }
   }
+
+  .submit {
+    margin: 0 5%;
+  }
 </style>

@@ -17,7 +17,7 @@
           <b-button pill variant="outline-primary" @click="showModal"  v-if="!alreadyLoggedIn" id="show-btn">Sign in</b-button>
           <div v-if="alreadyLoggedIn">
             <b-button pill variant="outline-primary" class="nav-button" @click="logout">Log out</b-button>
-            <b-button disabled pill variant="outline-primary">{{ this.$store.getters.user.email }}</b-button>
+            <b-button disabled pill variant="outline-primary" v-if="this.$store.getters.user.email !== null" >{{ this.$store.getters.user.email }}</b-button>
           </div>
         </div>
       </b-navbar-nav>

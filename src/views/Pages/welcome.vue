@@ -67,4 +67,22 @@ export default {
     background-repeat: no-repeat;
     height: 20rem;
   }
+
+  .VueCarousel-navigation-next{
+    font-size: 15px;
+  }
+
+  .VueCarousel-navigation-prev{
+    font-size: 15px;
+  }
+
+  @media(max-width: 768px) {
+    .VueCarousel-navigation-next{
+    font-size: 0;
+    }
+
+    .VueCarousel-navigation-prev{
+      font-size: 0;
+    }
+  }
 </style>
