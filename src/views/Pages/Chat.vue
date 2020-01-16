@@ -1,5 +1,5 @@
 <template>
-    <b-container class="chat">
+    <b-container class="chat chatcont">
         <h2 class="text-primary text-center" style="margin-bottom:3%;">{{ bookTitle }}</h2>
         <b-card>
             <b-card-text>
@@ -63,6 +63,11 @@ export default {
 }
 </script>
 <style>
+
+    .chatcont {
+      margin-bottom: 20%;
+    }
+
     .chat h2{
         font-size: 2.6em;
         margin-bottom: 0px;

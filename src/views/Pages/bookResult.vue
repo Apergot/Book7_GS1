@@ -1,6 +1,6 @@
 <template>
     <div>
-    <b-container :data="book">
+    <b-container :data="book" class="resultCont">
     <table id="summary_content_table" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -22,8 +22,8 @@
             </td>
         </tr>
     </tbody>
-    <b-button pill variant="outline-primary" class="chat-button" @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
     </table>
+    <b-button pill variant="outline-primary" class="chat-button" @click="joinBookChat" :disabled="loggedUser" style="rigth:10px;">Join Book Chat</b-button>
     </b-container>
     </div>
 </template>
@@ -136,7 +136,7 @@ export default {
     }
 
     .chat-button {
-        position: absolute;
-        left: 75%;
+        margin-top: 10px;
+       margin-bottom: 20%;
     }
 </style>
